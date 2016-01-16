@@ -73,6 +73,18 @@ function maxDuffelBagValue (cakeTuples, capacity) {
   var maxValueForWeight;
   var combSum;
 
+  var isInfinite = cakeTuples.reduce(function (isInfinite, cakeTuple) {
+    if (isInfinite || (cakeTuple[0] === 0 && cakeTuple[1] > 0)) {
+      return true;
+    } else {
+      return false;
+    }
+  }, false);
+
+  if (isInfinite) {
+    return Number.POSITIVE_INFINITY;
+  }
+
   var cakeTable = buildHighestValueTable(cakeTuples);
   var maxValueForWeightTable = [null];
   
