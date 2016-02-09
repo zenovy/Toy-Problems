@@ -15,6 +15,9 @@ function matrixMultiply (matrixA, matrixB) {
       var columnB = getColumn(matrixB, j);
       var sum = 0;
       for (var k = 0; k < rowA.length; k++) {
+        if (!rowA[k] || !columnB[k]) {
+          throw new Error('Unequal number of rows and columns!');
+        }
         sum += rowA[k] * columnB[k];
       }
       productRow.push(sum);
@@ -24,5 +27,6 @@ function matrixMultiply (matrixA, matrixB) {
   return productMatrix;
 }
 
-matrixA = [[1,2,3],[4,5,6],[7,8,9]];
+matrixA = [[1,2,3]];
 matrixB = [[1],[2],[3]];
+console.log(matrixMultiply(matrixA, matrixB));
